@@ -1,5 +1,5 @@
 import functions
-from utils.decorators import time
+from utils.decorators import time, FUNCTIONS
 from csv import reader
 from ast import literal_eval
 
@@ -11,9 +11,9 @@ def call_functions(csv_path):
     Inputs: csv_path
     """
     with open(csv_path, 'r') as file:
-        csvreader = reader(file,delimiter=';')
+        csvreader = reader(file, delimiter=';')
         for row in csvreader:
-            if row[0] in functions.FUNCTIONS:
+            if row[0] in FUNCTIONS:
                 function = getattr(functions, row[0])
                 function(*literal_eval(row[1]))
             else:

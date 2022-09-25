@@ -1,4 +1,4 @@
-from utils.decorators import debug, register, FUNCTIONS
+from utils.decorators import debug, register
 
 debugging = True
 
