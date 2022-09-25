@@ -13,8 +13,11 @@ def call_functions(csv_path):
     with open(csv_path, 'r') as file:
         csvreader = reader(file,delimiter=';')
         for row in csvreader:
-            callable = getattr(functions,row[0])
-            callable(*literal_eval(row[1]))
+            if row[0] in functions.FUNCTIONS:
+                callable = getattr(functions,row[0])
+                callable(*literal_eval(row[1]))
+            else:
+                print(f"Unknown function in row {row}")
 
 
 if __name__ == '__main__':

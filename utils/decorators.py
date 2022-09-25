@@ -2,6 +2,9 @@ from time import perf_counter
 from functools import wraps
 
 
+FUNCTIONS = dict()
+
+
 def time(func):
     """Print the runtime of the decorated function"""
     @wraps(func)
@@ -27,3 +30,9 @@ def debug(func):
         print(f"{func.__name__!r} returned {value!r}")
         return value
     return wrapper_debug
+
+
+def register(func):
+    """Register a function as a plug-in"""
+    FUNCTIONS[func.__name__] = func
+    return func
