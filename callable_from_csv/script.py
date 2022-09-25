@@ -1,11 +1,11 @@
-from utils.decorators import timed
+from utils.decorators import time
 from csv import reader
 from ast import literal_eval
 
 import functions
 
 
-@timed
+@time
 def main():
     with open("./run.csv", 'r') as file:
         csvreader = reader(file,delimiter=';')
