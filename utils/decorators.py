@@ -33,10 +33,12 @@ def debug_decorator(func):
 
 
 def dummy_decorator(func):
+    """Do-nothing decorator"""
     return func
 
 
 def debug(is_debug):
+    """Print info about call/output"""
     if is_debug:
         return debug_decorator
     else:
@@ -44,13 +46,16 @@ def debug(is_debug):
 
 
 def register(func):
-    """Register a function as a plug-in"""
+    """Register a function as available to use"""
     FUNCTIONS[func.__name__] = func
     return func
 
 
 def memo(func):
-    """Keep a cache of previous function calls (memoization)"""
+    """
+    Keep a cache of previous function calls (memoization)
+    This is just mock up better use @functools.lru_cache(maxsize=)
+    """
     @wraps(func)
     def wrapper_memoize(*args, **kwargs):
         cache_key = args + tuple(kwargs.items())
