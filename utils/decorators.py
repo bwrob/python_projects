@@ -47,3 +47,15 @@ def register(func):
     """Register a function as a plug-in"""
     FUNCTIONS[func.__name__] = func
     return func
+
+
+def memo(func):
+    """Keep a cache of previous function calls (memoization)"""
+    @wraps(func)
+    def wrapper_memoize(*args, **kwargs):
+        cache_key = args + tuple(kwargs.items())
+        if cache_key not in wrapper_memoize.cache:
+            wrapper_memoize.cache[cache_key] = func(*args, **kwargs)
+        return wrapper_memoize.cache[cache_key]
+    wrapper_memoize.cache = dict()
+    return wrapper_memoize
