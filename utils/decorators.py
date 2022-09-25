@@ -18,7 +18,7 @@ def time(func):
     return handler
 
 
-def debug(func):
+def debug_decorator(func):
     """Print the function signature and return value"""
     @wraps(func)
     def wrapper_debug(*args, **kwargs):
@@ -30,6 +30,17 @@ def debug(func):
         print(f"{func.__name__!r} returned {value!r}")
         return value
     return wrapper_debug
+
+
+def dummy_decorator(func):
+    return func
+
+
+def debug(is_debug):
+    if is_debug:
+        return debug_decorator
+    else:
+        return dummy_decorator
 
 
 def register(func):

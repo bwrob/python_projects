@@ -1,13 +1,15 @@
 from utils.decorators import debug, register, FUNCTIONS
 
+debugging = True
 
-@debug
+
+@debug(debugging)
 @register
-def repeater(text : str , repeate : int):
-    return text*repeate
+def repeater(text: str, repeat: int):
+    return text * repeat
 
 
-@debug
+@debug(debugging)
 @register
-def concatenator(inputs : list):
+def concatenator(inputs: list):
     return '-'.join(inputs)

@@ -14,8 +14,8 @@ def call_functions(csv_path):
         csvreader = reader(file,delimiter=';')
         for row in csvreader:
             if row[0] in functions.FUNCTIONS:
-                callable = getattr(functions,row[0])
-                callable(*literal_eval(row[1]))
+                function = getattr(functions, row[0])
+                function(*literal_eval(row[1]))
             else:
                 print(f"Unknown function in row {row}")
 
